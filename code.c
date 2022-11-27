@@ -1,11 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
-
+#include "variables.h"
 #define pi 3.14159265358979323846
-extern double *audiofile;
-extern double *h;
-extern double *filtered_audiofile;
-#define outsize 16002
+extern double audiofile[];
+extern double h[];
+extern double filtered_audiofile[];
 
 void convolve(double *p_coeffs, int p_coeffs_size,
               double *p_in, double *p_out)
@@ -28,4 +27,11 @@ void convolve(double *p_coeffs, int p_coeffs_size,
 
         p_out[k] = tmp;
     }
+}
+
+int main()
+{
+    convolve(h, 3, audiofile, filtered_audiofile);
+
+    return 0;
 }
