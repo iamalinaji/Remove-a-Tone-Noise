@@ -32,6 +32,13 @@ void convolve(double *p_coeffs, int p_coeffs_size,
 int main()
 {
     convolve(h, 3, audiofile, filtered_audiofile);
-
+    const char *filename = "file.txt";
+    FILE *fp;
+    fp = fopen(filename, "w");
+    for (int i = 0; i < (sizeof(filtered_audiofile) / sizeof(filtered_audiofile[0])); i++)
+    {
+        fprintf(fp, "%f \n", filtered_audiofile[i]);
+    }
+    fclose(fp);
     return 0;
 }
